@@ -1,0 +1,206 @@
+  <html>
+   <head>
+      <title>Insurance charge predictor</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+      <!-- Custom Theme files -->
+      <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" media="all" />
+      <!-- //Custom Theme files -->
+      <!-- web font -->
+      <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+      
+      <!-- //web font -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <style>
+         body {font-family: Arial, Helvetica, sans-serif;}
+         /* The Modal (background) */
+         .modal {
+         display: none; /* Hidden by default */
+         position: fixed; /* Stay in place */
+         z-index: 1; /* Sit on top */
+         padding-top: 100px; /* Location of the box */
+         left: 0;
+         top: 0;
+         width: 100%; /* Full width */
+         height: 100%; /* Full height */
+         overflow: auto; /* Enable scroll if needed */
+         background-color: rgb(0,0,0,0); /* Fallback color */
+         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+         }
+         
+         h1{
+    text-align: center;
+    margin-bottom: 40px;
+}
+table { 
+    width: 80%; 
+    table-layout: fixed;
+    border-collapse: collapse; 
+    margin: 0 auto;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+    background: #f2f2f2; 
+}
+th { 
+    background: #0099e6; 
+    color: #fff; 
+    font-weight: 600; 
+}
+td, th { 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    text-align: left; 
+    text-align: center
+}
+/*Mobile View*/
+@media 
+only screen and 
+    (max-width: 760px){
+    td, tr { 
+        display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	tr {
+        border: 1px solid #E74C3C; 
+    }
+    tr + tr{
+        margin-top: 1.5em;
+    }
+	td { 
+		/* make like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+        background-color: #F8D9D5;
+        text-align: left; 
+	}
+	td:before { 
+        content: attr(data-label);
+        display: inline-block;
+        line-height: 1.5;
+	    margin-left: -100%;
+        width: 100%;
+		white-space: nowrap;
+	}
+}
+         
+      </style>
+      
+   </head>
+ <body> 
+ 
+   <div class="results" style="padding-top:75px">
+    <table>
+            <thead>
+              <tr>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>BMI </th>
+                 <th>No of children</th>
+                <th>Smoker(Yes/No)</th>
+                 <th>Region</th>
+                  <th>Charge $ (predicted by model)</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr>
+                <td >{{ Age }}</td>
+                <td>
+			{% if sex ==1 %}
+			
+				 Male
+				
+			{% elif sex==0 %}
+				Female
+				
+			{% endif %} 
+			</td>
+                <td >{{ bmi }}  </td>
+               
+                <td> {{ch}}</td>
+                        
+			
+			
+			 <td>
+			 {% if smk==1%}		
+			    Yes
+			 {% elif smk==0 %}
+				No  
+			    
+			 {% endif %} 
+			</td>
+			 
+			  <td> 			
+			{% if reg ==0 %}
+			
+				 north east
+				
+			{% elif reg==1 %}
+				north west
+				
+			{% elif reg==2 %}	
+			   south east
+			
+			{% elif reg==3 %}
+			  south west
+			
+			{% endif %} 
+			</td>
+			
+                <td>		
+			
+          {{ prediction_text }}	
+              </td>
+              </tr>
+              
+            </tbody>
+          </table>
+         
+		
+	
+			
+	
+			
+			
+		</div>
+  <br>
+  <br>
+  <br>
+  
+   <div style="padding-left:1000px">
+ <button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+  
+ 
+}
+</script>
+  </div>
+  
+   <ul class="colorlib-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+         </ul>
+      </div>
+      <!-- //main -->
+   </body>
+</html>
